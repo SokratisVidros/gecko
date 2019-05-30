@@ -3,6 +3,7 @@
 const parseConfig = require('./src/parseConfig');
 
 const config = parseConfig();
+console.log('CONTENT', config);
 const carrersPageUrl = config.carrersPage;
 const jobs = config.jobs;
 
