@@ -1,3 +1,5 @@
+const fetch = require('node-fetch');
+
 const BASE_URL = 'https://www.workable.com/api';
 
 // 'https://www.workable.com/api/accounts/6504'

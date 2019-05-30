@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/SokratisVidros/gecko#readme",
   "dependencies": {
+    "node-fetch": "^2.6.0",
     "parent-package-json": "^2.0.1"
   }
 }
