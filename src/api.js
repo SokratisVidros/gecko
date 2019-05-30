@@ -24,7 +24,7 @@ exports.getJobs = function getJobs(shortcodes, onSuccess = () => {}, onFailure =
   Promise.all(shortcodes.map(getJobByShortcode))
     .then(jobs => {
       // console.log('VALUES:', jobs);
-      onSuccess(jobs);
+      onSuccess(jobs.filter(job => !!job));
     })
     .catch(err => {
       // console.log('ERROR ALL', err);
