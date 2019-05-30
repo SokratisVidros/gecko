@@ -16,11 +16,13 @@ function getJobByShortcode(shortcode, onSuccess = Promise.resolve, onFailure = P
     })
     .then(data => {
       console.log('DATA:', data);
-      onSuccess(data);
+      Promise.resolve(data)
+      // onSuccess(data);
     })
     .catch(err => {
       console.log('ERROR:', err);
-      onFailure(err);
+      Promise.reject(err)
+      // onFailure(err);
     });
 };
 
