@@ -6,5 +6,5 @@ const geckoConfig = parseConfig();
 const careersPageUrl = geckoConfig.careersPage;
 const jobs = geckoConfig.jobs;
 
-console.log('careersPage page:' + careersPageUrl);
+console.log('careers page: ' + careersPageUrl);
 console.log('jobs:', jobs);
