@@ -17,7 +17,7 @@ function getJobByShortcode(shortcode, onSuccess = Promise.resolve, onFailure = P
     .then(response => response.json())
     .catch(err => {
       console.log('ERROR:', err);
-      Promise.reject(err)
+      // Promise.reject(err)
     });
 };
 
