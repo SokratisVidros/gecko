@@ -21,7 +21,7 @@ function getJobByShortcode(shortcode) {
 };
 
 exports.getJobs = function getJobs(shortcodes, onSuccess = () => {}, onFailure = () => {}) {
-  Promise.all(shortcodes.map(getJobByShortcode))
+  return Promise.all(shortcodes.map(getJobByShortcode))
     .then(jobs => {
       // console.log('VALUES:', jobs);
       return jobs.filter(job => !!job);
