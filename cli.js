@@ -4,9 +4,10 @@ let fs = require("fs");
 
 const packageJsonPath = `${process.cwd()}/package.json`;
 const content = fs.readFileSync(packageJsonPath);
+const packageJson = JSON.parse(content);
 
-console.log(content);
-console.log(content.gecko);
+console.log(packageJson);
+console.log(packageJson.gecko);
 
 
 
