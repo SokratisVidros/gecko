@@ -14,6 +14,5 @@ console.log('jobs shortcode:', jobsShortcode);
 
 getJobs(jobsShortcode)
   .then(randomize)
-  .then(print);
+  .then(jobs => print({ careersPageUrl, jobs }));
 
-// console.log("--JOBS--", jobs);
