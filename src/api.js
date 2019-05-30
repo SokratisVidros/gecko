@@ -17,18 +17,17 @@ function getJobByShortcode(shortcode, onSuccess = Promise.resolve, onFailure = P
     .then(response => response.json())
     .catch(err => {
       console.log('ERROR:', err);
-      // Promise.reject(err)
     });
 };
 
 exports.getJobs = function getJobs(shortcodes, onSuccess = () => {}, onFailure = () => {}) {
   Promise.all(shortcodes.map(getJobByShortcode))
     .then(jobs => {
-      console.log('VALUES:', jobs);
+      // console.log('VALUES:', jobs);
       onSuccess(jobs);
     })
     .catch(err => {
-      console.log('ERROR ALL', err);
+      // console.log('ERROR ALL', err);
       onFailure(err);
     });
 };
