@@ -1,14 +1,12 @@
 #!/usr/bin/env node
 
-let fs = require("fs");
+import parseConfig from './src/parseConfig';
 
-const packageJsonPath = `${process.cwd()}/package.json`;
-const content = fs.readFileSync(packageJsonPath);
-const packageJson = JSON.parse(content);
+const config = parseConfig(); 
+const carrersPageUrl = config.carrersPage;
+const jobs = config.jobs;
 
-console.log(packageJson);
-console.log(packageJson.gecko);
-
+console.log(jobs);
 
 
 // // let  parent = require('parent-package-json');
