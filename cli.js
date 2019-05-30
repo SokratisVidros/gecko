@@ -16,4 +16,4 @@ getJobs(jobsShortcode)
   .then(randomize)
   .then(print);
 
-console.log("--JOBS--", jobs);
+// console.log("--JOBS--", jobs);
