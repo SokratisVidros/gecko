@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "gecko": "./index.js"
+    "gecko": "node index.js"
   },
   "repository": {
     "type": "git",
