@@ -10,5 +10,3 @@ fetch('https://www.workable.com/api/jobs/9E072E09CD')
     console.log("View Job: " + myJson.shortlink);
     console.log("Job shortcode: " + myJson.shortcode);
   });
-
-
