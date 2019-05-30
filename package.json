@@ -21,6 +21,8 @@
   "homepage": "https://github.com/SokratisVidros/gecko#readme",
   "dependencies": {
     "node-fetch": "^2.6.0",
-    "parent-package-json": "^2.0.1"
+    "boxen": "^4.0.0",
+    "chalk": "^2.4.2",
+    "chalk-animation": "^1.6.0"
   }
 }
