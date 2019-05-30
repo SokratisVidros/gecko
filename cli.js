@@ -10,5 +10,7 @@ const jobsShortcode = geckoConfig.jobs;
 console.log('careers page: ' + careersPageUrl);
 console.log('jobs shortcode:', jobsShortcode);
 
-const jobs = getJobs(jobsShortcode);
-console.log('jobs:', jobs);
+const jobs = getJobs(
+  jobsShortcode,
+  jobs => console.log(jobs)
+);
