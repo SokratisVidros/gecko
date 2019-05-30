@@ -14,14 +14,10 @@ function getJobByShortcode(shortcode) {
     .catch(err => {
       console.error('ERROR:', err);
     });
-};
+}
 
 exports.getJobs = function getJobs(shortcodes) {
   return Promise.all(shortcodes.map(getJobByShortcode))
-    .then(jobs => {
-      return jobs.filter(job => !!job);
-    })
-    .catch(err => {
-      return err;
-    });
-};
+    .then(jobs => jobs.filter(job => !!job))
+    .catch(err => err);
+}
