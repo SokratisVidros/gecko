@@ -10,9 +10,9 @@ function getJobByShortcode(shortcode, onSuccess = Promise.resolve, onFailure = P
     .then(response => {
       // console.log('RESPONSE:', response);
       if (!response.ok) {
-        return onFailure(new Error(response.statusText));
+        return Promise.reject(new Error(response.statusText));
       }
-      return onSuccess(response);
+      return Promise.resolve(response);
     })
     .then(response => response.json())
     .catch(err => {
