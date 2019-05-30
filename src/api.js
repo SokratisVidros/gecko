@@ -3,8 +3,6 @@ const BASE_URL = 'https://www.workable.com/api';
 // 'https://www.workable.com/api/accounts/6504'
 // 'https://www.workable.com/api/jobs/9E072E09CD'
 
-function get(url, )
-
 function getJobByShortcode(shortcode, cb) {
   fetch(`${BASE_URL}/jobs/${shortcode}`)
     .then(response => {
