@@ -24,8 +24,17 @@ function getJobByShortcode(shortcode, onSuccess = () => {}, onFailure = () => {}
     });
 };
 
-exports.getJobs = function getJobs(shortcodes) {
-  const jobs = [];
-  shortcodes.forEach(shortcode => getJobByShortcode(shortcode, jobs.push.bind(this)));
-  return jobs;
+exports.getJobs = function getJobs(shortcodes, onSuccess, onFailure) {
+
+  Promise.all(shortcodes.map(getJobByShortcode))
+    .then(values => console.log('VALUES:', values));
+  // const promises = shortcodes.map(getJobByShortcode)
+
+  // const jobsPromise = new Promise((resolve, reject) => {
+  //   const jobs = [];
+  //   shortcodes.forEach(shortcode => getJobByShortcode(shortcode, jobs.push.bind(this)));
+
+  // });
+  // shortcodes.forEach(shortcode => getJobByShortcode(shortcode, jobs.push.bind(this)));
+  // return jobs;
 };
