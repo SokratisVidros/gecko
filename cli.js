@@ -3,8 +3,8 @@
 const parseConfig = require('./src/parseConfig');
 
 const geckoConfig = parseConfig();
-const carrersPageUrl = geckoConfig.carrersPage;
+const careersPageUrl = geckoConfig.careersPage;
 const jobs = geckoConfig.jobs;
 
-console.log('carrers page:' + carrersPageUrl);
+console.log('careersPage page:' + careersPageUrl);
 console.log('jobs:', jobs);
