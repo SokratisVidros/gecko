@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import parseConfig from './src/parseConfig';
+const parseConfig = require('./src/parseConfig');
 
 const config = parseConfig(); 
 const carrersPageUrl = config.carrersPage;

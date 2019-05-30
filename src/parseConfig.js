@@ -1,9 +1,9 @@
-let fs = require("fs");
+const fs = require('fs');
 
-const parseConfig = () => {
+function parseConfig() {
   const packageJsonPath = `${process.cwd()}/package.json`;
   const content = fs.readFileSync(packageJsonPath);
-  const packageJson = JSON.parse(content);
+  return JSON.parse(content)
 };
 
-export default parseConfig;
+module.exports = parseConfig;
