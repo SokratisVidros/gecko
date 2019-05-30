@@ -8,25 +8,26 @@ const BASE_URL = 'https://www.workable.com/api';
 function getJobByShortcode(shortcode, onSuccess, onFailure = () => {}) {
   fetch(`${BASE_URL}/jobs/${shortcode}`)
     .then(response => {
-      console.log('response:', response);
-      if (response.ok) {
-        return response.json();        
+      console.log('RESPONSE:', response);
+      if (!response.ok) {
+        throw Error(response.statusText);
       }
-      console.log('error');
+      return response.json();
     })
     .then(data => {
-      console.log('data', data);
+      console.log('DATA:', data);
       onSuccess(data);
     })
     .catch(err => {
-      console.log(err);
+      console.log('ERROR:', err);
       onFailure(err);
     });
 };
 
 exports.getJobs = function getJobs(shortcodes) {
-  const array = [];
-  shortcodes.forEach(shortcode => getJobByShortcode(shortcode, function(job) {array.push(job)}));
-  console.log(array);
+  const jobs = [];
+  shortcodes.forEach(shortcode => getJobByShortcode(shortcode, jobs.push));
+  // console.log(array);
+  return array;
 }
 
