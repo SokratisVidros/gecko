@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 var parent = require('parent-package-json');
+console.log(process.cwd());
 console.log(parent, parent())
 var parentJSON = parent().parse();
 
