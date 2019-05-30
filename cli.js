@@ -9,10 +9,6 @@ const geckoConfig = parseConfig();
 const careersPageUrl = geckoConfig.careersPage;
 const jobsShortcode = geckoConfig.jobs;
 
-console.log('careers page: ' + careersPageUrl);
-console.log('jobs shortcode:', jobsShortcode);
-
 getJobs(jobsShortcode)
   .then(randomize)
   .then(jobs => print({ careersPageUrl, jobs }));
-
