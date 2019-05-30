@@ -26,7 +26,7 @@ function getJobByShortcode(shortcode, onSuccess, onFailure = () => {}) {
 
 exports.getJobs = function getJobs(shortcodes) {
   const jobs = [];
-  shortcodes.forEach(shortcode => getJobByShortcode(shortcode, jobs.push));
+  shortcodes.forEach(shortcode => getJobByShortcode(shortcode, jobs.push.bind(this)));
   return jobs;
 }
 
