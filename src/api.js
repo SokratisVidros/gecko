@@ -5,7 +5,7 @@ const BASE_URL = 'https://www.workable.com/api';
 // 'https://www.workable.com/api/accounts/6504'
 // 'https://www.workable.com/api/jobs/9E072E09CD'
 
-function getJobByShortcode(shortcode, onSuccess = () => {}, onFailure = () => {}) {
+function getJobByShortcode(shortcode, onSuccess = Promise.resolve, onFailure = Promise.reject) {
   return fetch(`${BASE_URL}/jobs/${shortcode}`)
     .then(response => {
       // console.log('RESPONSE:', response);
