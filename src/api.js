@@ -5,18 +5,18 @@ const BASE_URL = 'https://www.workable.com/api';
 // 'https://www.workable.com/api/accounts/6504'
 // 'https://www.workable.com/api/jobs/9E072E09CD'
 
-function getJobByShortcode(shortcode, onSuccess = Promise.resolve, onFailure = Promise.reject) {
+function getJobByShortcode(shortcode) {
   return fetch(`${BASE_URL}/jobs/${shortcode}`)
     .then(response => {
       // console.log('RESPONSE:', response);
       if (!response.ok) {
-        return Promise.reject(new Error(response.statusText));
+        new Error(response.statusText);
       }
-      return Promise.resolve(response);
+      return response;
     })
     .then(response => response.json())
     .catch(err => {
-      console.log('ERROR:', err);
+      console.error('ERROR:', err);
     });
 };
 
