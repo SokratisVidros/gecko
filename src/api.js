@@ -22,16 +22,13 @@ function getJobByShortcode(shortcode, onSuccess = Promise.resolve, onFailure = P
 };
 
 exports.getJobs = function getJobs(shortcodes, onSuccess, onFailure) {
-
-  Promise.all(shortcodes.map(shortcode => getJobByShortcode(shortcode)))
-    .then(values => console.log('VALUES:', values));
-  // const promises = shortcodes.map(getJobByShortcode)
-
-  // const jobsPromise = new Promise((resolve, reject) => {
-  //   const jobs = [];
-  //   shortcodes.forEach(shortcode => getJobByShortcode(shortcode, jobs.push.bind(this)));
-
-  // });
-  // shortcodes.forEach(shortcode => getJobByShortcode(shortcode, jobs.push.bind(this)));
-  // return jobs;
+  Promise.all(shortcodes.map(getJobByShortcode))
+    .then(jobs => {
+      console.log('VALUES:', jobs);
+      onSuccess(jobs);
+    })
+    .catch(err => {
+      console.log('ERROR ALL', err);
+      onFailure(err);
+    });
 };
