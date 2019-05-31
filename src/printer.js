@@ -16,7 +16,7 @@ You must be good at what you do.
 
 ${chalk.blueBright.bold(companyName)} is hiring and we're looking for talented developers like you.
 
-${chalk.green.underline('Are you interested?') + ' ' + chalk.bold('[Y|n]: ')}`;
+${chalk.green('Are you interested?') + ' ' + chalk.bold('[Y|n]: ')}`;
 }
 
 function makeAd({
@@ -27,10 +27,10 @@ function makeAd({
   workableLink = 'https://www.workable.com'
 } = {}) {
   return `
-${chalk.bold.bgGreen(`Apply now for ${companyName}'s next ${title} at ${shortlink}`)}
+${chalk.bold.bgGreen(`Apply now for ${companyName}'s next ${title} at `)}${chalk.bold.bgGreen.underline(shortlink)}
 
 
-Or view all ${chalk.blueBright.bold(`${companyName}'s`)} jobs at ${carrersPageLink}
+Or view all ${chalk.blueBright.bold(`${companyName}'s`)} jobs at ${chalk.underline(carrersPageLink)}
 
 
 Powered by Workable Gecko 🦎.
@@ -44,7 +44,8 @@ function showPrompt({ shortlink }) {
     output: process.stdout,
   });
 
-  const companyName = extractCompanyNameFromUrl(shortlink)
+  let companyName = extractCompanyNameFromUrl(shortlink)
+  companyName = companyName.charAt(0).toUpperCase() + companyName.slice(1)
   const prompt = makePrompt({ companyName });
 
   return new Promise((resolve, reject) => {
