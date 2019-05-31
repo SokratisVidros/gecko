@@ -3,7 +3,7 @@ const chalk = require('chalk');
 const terminalLink = require('terminal-link');
 
 const animateGecko = require('./animateGecko');
-const reset = require('../reset');
+const clearConsole = require('./utils').clearConsole;
 
 const extractCompanyNameFromUrl = require('./utils').extractCompanyNameFromUrl;
 const extractCareersPageFromUrl = require('./utils').extractCareersPageFromUrl;
@@ -49,7 +49,7 @@ function showJobAd(job) {
 
 function print(data) {
   return animateGecko()
-    .then(reset)
+    .then(clearConsole)
     .then(showPrompt(data))
     .then(promptAnswer => { /* show add or skip */})
     .then(showJobAd(data))
