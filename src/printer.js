@@ -21,13 +21,13 @@ Apply now for ${companyName}'s next ${positionLink} or view all ${companyName}'s
 Powered by ${workableLink}.
 `;
 
-function showPrompt() {
+function showPrompt(job) {
   const rl = readline.createInterface({
       input: process.stdin,
       output: process.stdout,
   });
 
-  return job => new Promise(resolve => rl.question(makePrompt(extractCompanyNameFromUrl(job.shortlink)), ans => {
+  return () => new Promise(resolve => rl.question(makePrompt(extractCompanyNameFromUrl(job.shortlink)), ans => {
       rl.close();
       resolve(ans);
   }))
