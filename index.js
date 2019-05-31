@@ -11,4 +11,4 @@ const jobsShortcode = geckoConfig.jobs;
 
 getJobs(jobsShortcode)
   .then(randomize)
-  .then(jobs => print({ careersPageUrl, jobs }));
+  .then(job => print({ careersPageUrl, job }));

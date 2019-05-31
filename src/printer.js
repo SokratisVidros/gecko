@@ -8,19 +8,16 @@ const reset = require('../reset');
 const PROMPT_TEXT = `
 Hi! Have you found us or have we found you? 🙂
 
-You must be good at what you do. Semaphore is hiring and we're looking for talented developers like you.
+You must be good at what you do. ${'companyName'} is hiring and we're looking for talented developers like you.
 
 Are you interested? [Y|n]
 `;
 
-const makeAd = () => {
-
-
-  return `
-Apply now for Semaphore's next [Senior Software Engineer] (URL)or
-view all Semaphore's [jobs]: URL.
-Powered by Workable: URL
-`}
+const makeAd = ({ companyName, positionLink, carrersPageLink }) => `
+Apply now for ${companyName}'s next ${positionLink} or
+view all ${companyName}'s ${carrersPageLink}.
+Powered by ${workableLink}
+`;
 
 function showPrompt() {
   const rl = readline.createInterface({
@@ -35,8 +32,20 @@ function showPrompt() {
 }
 
 function showJobAd(data) {
+  const { careersPageUrl, job } = data;
   console.log(data);
-  return () => console.log(makeAd(data));
+
+  const companyName = 'Company-Name'
+  const positionLink = terminalLink(job.title, job.shortlink);
+  const carrersPageLink = terminalLink(companyName, careersPageUrl);
+  const workableLink = terminalLink('Workable', 'https://www.workable.com/');
+
+  return () => console.log(makeAd({
+    companyName,
+    positionLink,
+    carrersPageLink,
+    workableLink
+  }));
 }
 
 function print(data) {
