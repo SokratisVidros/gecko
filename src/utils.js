@@ -9,3 +9,7 @@ exports.extractCareersPageFromUrl = function extractCareersPageFromUrl(url = '')
 exports.clearConsole = function clearConsole() {
   return process.stdout.write('\033c');
 }
+
+exports.capitalizaFirstLetter = function capitalizaFirstLetter(str = '') {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}

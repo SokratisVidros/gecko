@@ -7,6 +7,7 @@ const clearConsole = require('./utils').clearConsole;
 
 const extractCompanyNameFromUrl = require('./utils').extractCompanyNameFromUrl;
 const extractCareersPageFromUrl = require('./utils').extractCareersPageFromUrl;
+const { capitalizaFirstLetter } = require('./utils');
 
 function makePrompt({ companyName = 'Someone' }) {
   return `
@@ -33,7 +34,7 @@ ${chalk.bold.bgGreen(`Apply now for ${companyName}'s next ${title} at `)}${chalk
 Or view all ${chalk.blueBright.bold(`${companyName}'s`)} jobs at ${chalk.underline(carrersPageLink)}
 
 
-Powered by Workable Gecko 🦎.
+Powered by Workable Gecko 🦎
 
 ${workableLink}`;
 }
@@ -44,8 +45,7 @@ function showPrompt({ shortlink }) {
     output: process.stdout,
   });
 
-  let companyName = extractCompanyNameFromUrl(shortlink)
-  companyName = companyName.charAt(0).toUpperCase() + companyName.slice(1)
+  const companyName = capitalizaFirstLetter(extractCompanyNameFromUrl(shortlink));
   const prompt = makePrompt({ companyName });
 
   return new Promise((resolve, reject) => {
@@ -61,7 +61,7 @@ function showPrompt({ shortlink }) {
 }
 
 function showJobAd(job) {
-  const companyName = extractCompanyNameFromUrl(job.shortlink);
+  const companyName = capitalizaFirstLetter(extractCompanyNameFromUrl(job.shortlink));
   const carrersPageLink = extractCareersPageFromUrl(job.shortlink);
 
   const ad = makeAd({
