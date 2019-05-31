@@ -31,13 +31,10 @@ function showPrompt() {
   }))
 }
 
-function showJobAd(data) {
-  const { careersPageUrl, job } = data;
-  console.log(data);
-
-  const companyName = 'Company-Name'
+function showJobAd(job) {
+  const companyName = job.shortlink.slice(6).split('.workable')[0];
   const positionLink = terminalLink(job.title, job.shortlink);
-  const carrersPageLink = terminalLink(companyName, careersPageUrl);
+  const carrersPageLink = terminalLink(companyName, job.shortlink.split('com')[0] + 'com');
   const workableLink = terminalLink('Workable', 'https://www.workable.com/');
 
   return () => console.log(makeAd({
