@@ -1,7 +1,6 @@
 const chalk = require('chalk');
 const boxen = require('boxen');
 const readline = require('readline');
-const terminalLink = require('terminal-link');
 
 const animateGecko = require('./animateGecko');
 const clearConsole = require('./utils').clearConsole;
