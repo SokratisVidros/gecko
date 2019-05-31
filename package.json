@@ -13,7 +13,11 @@
     "type": "git",
     "url": "git+https://github.com/SokratisVidros/gecko.git"
   },
-  "author": "",
+  "author": "Sokratis Vidros <sokratis.vidros@gmail.com>",
+  "contributors": [
+    "Nikos Petridis <nick.petridis93@gmail.com>",
+    "George Tsiros <gtsiros97@gmail.com>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/SokratisVidros/gecko/issues"
