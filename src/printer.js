@@ -36,7 +36,7 @@ Or view all ${chalk.blueBright.bold(`${companyName}'s`)} jobs at ${chalk.underli
 
 Powered by Workable Gecko 🦎
 
-${workableLink}`;
+${chalk.underline(workableLink)}`;
 }
 
 function showPrompt({ shortlink }) {
