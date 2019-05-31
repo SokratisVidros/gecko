@@ -49,10 +49,10 @@ function showPrompt({ shortlink }) {
 
   return new Promise((resolve, reject) => {
     rl.question(prompt, answer => {
-      if (answer === 'y') {
-        resolve(true);
-      } else {
+      if (answer === 'n') {
         resolve(false);
+      } else {
+        resolve(true);
       }
       rl.close();
     });
