@@ -5,17 +5,19 @@ const terminalLink = require('terminal-link');
 const animateGecko = require('./animateGecko');
 const reset = require('../reset');
 
-const PROMPT_TEXT = `
+const extractCompanyNameFromUrl = require('./utils').extractCompanyNameFromUrl;
+const extractCareersPageFromUrl = require('./utils').extractCareersPageFromUrl;
+
+const makePrompt = ({ companyName }) => `
 Hi! Have you found us or have we found you? 🙂
 
-You must be good at what you do. ${'companyName'} is hiring and we're looking for talented developers like you.
+You must be good at what you do. ${companyName} is hiring and we're looking for talented developers like you.
 
 Are you interested? [Y|n]
 `;
 
 const makeAd = ({ companyName, positionLink, carrersPageLink, workableLink }) => `
-Apply now for ${companyName}'s next ${positionLink} or
-view all ${companyName}'s ${carrersPageLink}.
+Apply now for ${companyName}'s next ${positionLink} or view all ${companyName}'s ${carrersPageLink}.
 Powered by ${workableLink}.
 `;
 
@@ -25,16 +27,16 @@ function showPrompt() {
       output: process.stdout,
   });
 
-  return new Promise(resolve => rl.question(PROMPT_TEXT, ans => {
+  return ({ shortlink }) => new Promise(resolve => rl.question(makePrompt(extractCompanyNameFromUrl(shortlink)), ans => {
       rl.close();
       resolve(ans);
   }))
 }
 
 function showJobAd(job) {
-  const companyName = job.shortlink.slice(8).split('.workable')[0];
+  const companyName = extractCompanyNameFromUrl(job.shortlink);
   const positionLink = terminalLink(job.title, job.shortlink);
-  const carrersPageLink = terminalLink('jobs', job.shortlink.split('com')[0] + 'com');
+  const carrersPageLink = terminalLink('jobs', extractCareersPageFromUrl(job.shortlink));
   const workableLink = terminalLink('Workable', 'https://www.workable.com/');
 
   return () => console.log(makeAd({
@@ -48,7 +50,7 @@ function showJobAd(job) {
 function print(data) {
   return animateGecko()
     .then(reset)
-    .then(showPrompt)
+    .then(showPrompt(data))
     .then(promptAnswer => { /* show add or skip */})
     .then(showJobAd(data))
     // .then(waitForUserInput)
