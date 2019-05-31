@@ -34,7 +34,6 @@ function showPrompt() {
 }
 
 function showJobAd(job) {
-  console.log('AAAAA', job);
   const companyName = extractCompanyNameFromUrl(job.shortlink);
   const positionLink = terminalLink(job.title, job.shortlink);
   const carrersPageLink = terminalLink('jobs', extractCareersPageFromUrl(job.shortlink));
