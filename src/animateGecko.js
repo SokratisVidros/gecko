@@ -4,7 +4,7 @@ const animation = require('ascii-animation');
 const chalk = require('chalk');
 
 const gecko = fs
-  .readFileSync('gecko.txt', 'utf8')
+  .readFileSync(__dirname + '/gecko.txt', 'utf8')
   .split(/\r?\n/g)
 
 const [columns, lines] = process.stdout.getWindowSize();
@@ -24,7 +24,7 @@ const frames = Array(Math.ceil(mainFrame.length / 2)).fill('').map((_, i) => {
     .join("\n");
 });
 
-function animateGecko() {
+(function animateGecko() {
   let condition = true;
   let secondsPerFrame = 0.15;
   
@@ -35,6 +35,6 @@ function animateGecko() {
     condition = false
     console.log('DONE')
   }, secondsPerFrame * frames.length * 1000);
-}
+})()
 
-module.exports = animateGecko;
+// module.exports = animateGecko;
