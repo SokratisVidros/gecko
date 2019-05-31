@@ -57,6 +57,4 @@ function print(data) {
     // .then(waitForUserInput)
 }
 
-print();
-
 module.exports = print;
