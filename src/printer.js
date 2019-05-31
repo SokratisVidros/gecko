@@ -48,6 +48,8 @@ function showJobAd(job) {
 }
 
 function print(data) {
+  console.log('data', data);
+  return;
   return animateGecko()
     .then(clearConsole)
     .then(showPrompt(data))
