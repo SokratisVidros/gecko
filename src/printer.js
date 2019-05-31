@@ -16,7 +16,7 @@ Are you interested? [Y|n]
 const makeAd = ({ companyName, positionLink, carrersPageLink, workableLink }) => `
 Apply now for ${companyName}'s next ${positionLink} or
 view all ${companyName}'s ${carrersPageLink}.
-Powered by ${workableLink}
+Powered by ${workableLink}.
 `;
 
 function showPrompt() {
@@ -32,10 +32,9 @@ function showPrompt() {
 }
 
 function showJobAd(job) {
-  // discard 'https://' and remove '.workable...'
   const companyName = job.shortlink.slice(8).split('.workable')[0];
   const positionLink = terminalLink(job.title, job.shortlink);
-  const carrersPageLink = terminalLink(companyName, job.shortlink.split('com')[0] + 'com');
+  const carrersPageLink = terminalLink('jobs', job.shortlink.split('com')[0] + 'com');
   const workableLink = terminalLink('Workable', 'https://www.workable.com/');
 
   return () => console.log(makeAd({
@@ -50,7 +49,7 @@ function print(data) {
   return animateGecko()
     .then(reset)
     .then(showPrompt)
-    .then(promptAnswer => { /* show add or close */})
+    .then(promptAnswer => { /* show add or skip */})
     .then(showJobAd(data))
     // .then(waitForUserInput)
 }
