@@ -24,7 +24,7 @@ const frames = Array(Math.ceil(mainFrame.length / 2)).fill('').map((_, i) => {
     .join("\n");
 });
 
-(function animateGecko() {
+function animateGecko() {
   let condition = true;
   let secondsPerFrame = 0.15;
   
@@ -35,6 +35,6 @@ const frames = Array(Math.ceil(mainFrame.length / 2)).fill('').map((_, i) => {
     condition = false
     console.log('DONE')
   }, secondsPerFrame * frames.length * 1000);
-})()
+}
 
-// module.exports = animateGecko;
+module.exports = animateGecko;
