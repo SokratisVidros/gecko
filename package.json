@@ -1,13 +1,13 @@
 {
   "name": "gecko",
   "version": "1.0.9",
-  "description": "",
+  "description": "CLI Job ads",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "gecko": "./cli.js"
+    "gecko": "./index.js"
   },
   "repository": {
     "type": "git",
