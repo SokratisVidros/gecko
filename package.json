@@ -1,6 +1,6 @@
 {
-  "name": "gecko",
-  "version": "1.0.9",
+  "name": "workable-gecko",
+  "version": "0.0.1",
   "description": "CLI Job ads",
   "main": "index.js",
   "scripts": {
