@@ -27,14 +27,15 @@ const frames = Array(Math.ceil(mainFrame.length / 2)).fill('').map((_, i) => {
 function animateGecko() {
   let condition = true;
   let secondsPerFrame = 0.15;
-  
-  animation.secondsPerFrame(secondsPerFrame);
-  animation.animate(frames, () => condition, () => {}).bold();
 
   setTimeout(() => {
-    condition = false
-    console.log('DONE')
+    condition = false;
   }, secondsPerFrame * frames.length * 1000);
+
+  return new Promise((resolve, reject) => {
+    animation.secondsPerFrame(secondsPerFrame);
+    animation.animate(frames, () => condition, resolve).bold();
+  });
 }
 
 module.exports = animateGecko;
