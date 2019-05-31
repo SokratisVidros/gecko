@@ -10,14 +10,7 @@ function getJobByShortcode(shortcode) {
       }
       return response;
     })
-    .then(response => response.json())
-    .catch(err => {
-      console.error('ERROR:', err);
-    });
+    .then(response => response.json());
 }
 
-exports.getJobs = function getJobs(shortcodes) {
-  return Promise.all(shortcodes.map(getJobByShortcode))
-    .then(jobs => jobs.filter(job => !!job))
-    .catch(err => err);
-}
+module.exports = { getJobByShortcode };

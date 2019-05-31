@@ -1,10 +1,9 @@
-require('./array');
 const fs = require('fs');
-const animation = require('ascii-animation');
 const chalk = require('chalk');
+const animation = require('ascii-animation');
 
 const gecko = fs
-  .readFileSync(__dirname + '/gecko.txt', 'utf8')
+  .readFileSync(__dirname + '/ascii/gecko.txt', 'utf8')
   .split(/\r?\n/g)
 
 const [columns, lines] = process.stdout.getWindowSize();

@@ -1,15 +1,11 @@
-exports.extractCompanyNameFromUrl = function (url = '') {
+exports.extractCompanyNameFromUrl = function extractCompanyNameFromUrl(url = '') {
   return url.slice(8).split('.workable')[0];
 }
 
-exports.extractCareersPageFromUrl = function (url = '') {
+exports.extractCareersPageFromUrl = function extractCareersPageFromUrl(url = '') {
   return url.split('com')[0] + 'com';
 }
 
-exports.clearConsole = function () {
+exports.clearConsole = function clearConsole() {
   return process.stdout.write('\033c');
-}
-
-exports.randomize = function (array) {
-  return array[Math.floor(Math.random() * array.length)];
 }

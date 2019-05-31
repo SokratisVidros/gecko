@@ -1,5 +1,6 @@
-const readline = require('readline');
 const chalk = require('chalk');
+const boxen = require('boxen');
+const readline = require('readline');
 const terminalLink = require('terminal-link');
 
 const animateGecko = require('./animateGecko');
@@ -8,52 +9,75 @@ const clearConsole = require('./utils').clearConsole;
 const extractCompanyNameFromUrl = require('./utils').extractCompanyNameFromUrl;
 const extractCareersPageFromUrl = require('./utils').extractCareersPageFromUrl;
 
-const makePrompt = ({ companyName }) => `
-Hi! Have you found us or have we found you? 🙂
+function makePrompt({ companyName = 'Someone' }) {
+  return [
+    chalk.bold('Hi! Have you found us or have we found you? 🙂'),
+    `You must be good at what you do. ${companyName} is hiring and we're looking for talented developers like you.`,
+    chalk.green.underline('Are you interested?') + ' ' + chalk.bold('[Y|n]: ')
+  ].join('\n\n');
+}
 
-You must be good at what you do. ${companyName} is hiring and we're looking for talented developers like you.
+function makeAd({
+  title,
+  shortlink,
+  carrersPageLink,
+  companyName,
+  workableLink = 'https://www.workable.com'
+} = {}) {
+  return `
+${chalk.bold.bgGreen(`Apply now for ${companyName}'s next ${title} at ${shortlink}`)}
 
-Are you interested? [Y|n]
-`;
 
-const makeAd = ({ companyName, positionLink, carrersPageLink, workableLink }) => `
-Apply now for ${companyName}'s next ${positionLink} or view all ${companyName}'s ${carrersPageLink}.
+Or view all ${chalk.blueBright(`${companyName}'s`)} jobs at ${carrersPageLink}
+
+
 Powered by ${workableLink}.
 `;
+}
 
-function showPrompt() {
+function showPrompt({ shortlink }) {
   const rl = readline.createInterface({
-      input: process.stdin,
-      output: process.stdout,
+    input: process.stdin,
+    output: process.stdout,
   });
 
-  return ({ shortlink }) => new Promise(resolve => rl.question(makePrompt(extractCompanyNameFromUrl(shortlink)), ans => {
+  const companyName = extractCompanyNameFromUrl(shortlink)
+  const prompt = makePrompt({ companyName });
+
+  return new Promise((resolve, reject) => {
+    rl.question(prompt, answer => {
+      if (answer === 'y') {
+        resolve(true);
+      } else {
+        resolve(false);
+      }
       rl.close();
-      resolve(ans);
-  }))
+    });
+  });
 }
 
 function showJobAd(job) {
   const companyName = extractCompanyNameFromUrl(job.shortlink);
-  const positionLink = terminalLink(job.title, job.shortlink);
-  const carrersPageLink = terminalLink('jobs', extractCareersPageFromUrl(job.shortlink));
-  const workableLink = terminalLink('Workable', 'https://www.workable.com/');
+  const carrersPageLink = extractCareersPageFromUrl(job.shortlink);
 
-  return () => console.log(makeAd({
+  const ad = makeAd({
     companyName,
-    positionLink,
     carrersPageLink,
-    workableLink
-  }));
+    ...job
+  });
+
+  console.log(boxen(ad, {padding: 1}));
 }
 
 function print(data) {
   return animateGecko()
     .then(clearConsole)
-    .then(showPrompt(data))
-    .then(promptAnswer => { /* show add or skip */})
-    .then(showJobAd(data))
-    // .then(waitForUserInput)
+    .then(() => showPrompt(data))
+    .then((shouldShowAd = true) => {
+      if (shouldShowAd) {
+        return showJobAd(data)
+      }
+    })
 }
 
 module.exports = print;

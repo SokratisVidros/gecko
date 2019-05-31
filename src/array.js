@@ -8,3 +8,7 @@ Array.prototype.rotate = function rotate(n) {
 
   return x.splice(-num % x.length).concat(x);
 }
+
+Array.prototype.random = function random() {
+  return this[Math.floor(Math.random() * this.length)];
+}

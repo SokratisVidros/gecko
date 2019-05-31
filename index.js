@@ -1,12 +1,14 @@
 #!/usr/bin/env node
 
+require('./src/array');
+
 const parseConfig = require('./src/parseConfig');
-const getJobs = require('./src/api').getJobs;
-const randomize = require('./src/utils').randomize;
+const { getJobByShortcode } = require('./src/api');
+const { randomize } = require('./src/utils');
 const print = require('./src/printer');
 
-const geckoConfig = parseConfig();
+const { jobs = [] } = parseConfig();
 
-getJobs(geckoConfig.jobs)
-  .then(randomize)
-  .then(print);
+getJobByShortcode(jobs.random())
+  .then(print)
+  .catch(err => console.err('Gecko:> ', err.stack || err.message || err));
