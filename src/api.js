@@ -18,6 +18,7 @@ function getJobByShortcode(shortcode) {
 
 exports.getJobs = function getJobs(shortcodes) {
   return Promise.all(shortcodes.map(getJobByShortcode))
+    .then(jobs => {console.log('jobs', jobs); return jobs})
     .then(jobs => jobs.filter(job => !!job))
     .catch(err => err);
 }
