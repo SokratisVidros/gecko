@@ -13,7 +13,7 @@ You must be good at what you do. ${'companyName'} is hiring and we're looking fo
 Are you interested? [Y|n]
 `;
 
-const makeAd = ({ companyName, positionLink, carrersPageLink }) => `
+const makeAd = ({ companyName, positionLink, carrersPageLink, workableLink }) => `
 Apply now for ${companyName}'s next ${positionLink} or
 view all ${companyName}'s ${carrersPageLink}.
 Powered by ${workableLink}
