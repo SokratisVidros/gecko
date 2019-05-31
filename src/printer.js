@@ -27,7 +27,7 @@ function showPrompt() {
       output: process.stdout,
   });
 
-  return ({ shortlink }) => new Promise(resolve => rl.question(makePrompt(extractCompanyNameFromUrl(shortlink)), ans => {
+  return job => new Promise(resolve => rl.question(makePrompt(extractCompanyNameFromUrl(job.shortlink)), ans => {
       rl.close();
       resolve(ans);
   }))
@@ -49,7 +49,6 @@ function showJobAd(job) {
 
 function print(data) {
   console.log('data', data);
-  return;
   return animateGecko()
     .then(clearConsole)
     .then(showPrompt(data))
