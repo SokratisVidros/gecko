@@ -9,11 +9,14 @@ const extractCompanyNameFromUrl = require('./utils').extractCompanyNameFromUrl;
 const extractCareersPageFromUrl = require('./utils').extractCareersPageFromUrl;
 
 function makePrompt({ companyName = 'Someone' }) {
-  return [
-    chalk.bold('Hi! Have you found us or have we found you? 🙂'),
-    `You must be good at what you do. ${companyName} is hiring and we're looking for talented developers like you.`,
-    chalk.green.underline('Are you interested?') + ' ' + chalk.bold('[Y|n]: ')
-  ].join('\n\n');
+  return `
+${chalk.bold('Hi! Have you found us or have we found you? 🙂')}
+
+You must be good at what you do.
+
+${chalk.blueBright.bold(companyName)} is hiring and we're looking for talented developers like you.
+
+${chalk.green.underline('Are you interested?') + ' ' + chalk.bold('[Y|n]: ')}`;
 }
 
 function makeAd({
@@ -27,11 +30,12 @@ function makeAd({
 ${chalk.bold.bgGreen(`Apply now for ${companyName}'s next ${title} at ${shortlink}`)}
 
 
-Or view all ${chalk.blueBright(`${companyName}'s`)} jobs at ${carrersPageLink}
+Or view all ${chalk.blueBright.bold(`${companyName}'s`)} jobs at ${carrersPageLink}
 
 
-Powered by ${workableLink}.
-`;
+Powered by Workable Gecko 🦎.
+
+${workableLink}`;
 }
 
 function showPrompt({ shortlink }) {
