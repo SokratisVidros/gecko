@@ -4,7 +4,7 @@ const animation = require('ascii-animation');
 const chalk = require('chalk');
 
 const gecko = fs
-  .readFileSync('./gecko.txt', 'utf8')
+  .readFileSync('./src/gecko.txt', 'utf8')
   .split(/\r?\n/g)
 
 const [columns, lines] = process.stdout.getWindowSize();
