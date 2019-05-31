@@ -6,9 +6,7 @@ const randomize = require('./src/utils').randomize;
 const print = require('./src/printer');
 
 const geckoConfig = parseConfig();
-const careersPageUrl = geckoConfig.careersPage;
-const jobsShortcode = geckoConfig.jobs;
 
-getJobs(jobsShortcode)
+getJobs(geckoConfig.jobs)
   .then(randomize)
   .then(print);
