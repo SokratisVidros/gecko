@@ -32,7 +32,8 @@ function showPrompt() {
 }
 
 function showJobAd(job) {
-  const companyName = job.shortlink.slice(6).split('.workable')[0];
+  // discard 'https://' and remove '.workable...'
+  const companyName = job.shortlink.slice(8).split('.workable')[0];
   const positionLink = terminalLink(job.title, job.shortlink);
   const carrersPageLink = terminalLink(companyName, job.shortlink.split('com')[0] + 'com');
   const workableLink = terminalLink('Workable', 'https://www.workable.com/');
